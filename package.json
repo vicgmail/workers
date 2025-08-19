@@ -8,14 +8,15 @@
     "build": "tsc",
     "build:run_worker": "node dist/worker/main.js",
     "run_worker": "ts-node ./src/worker/main.ts",
-    "ts-node": "ts-node"
+    "ts-node": "ts-node",
+    "ts-node:watch": "npx ts-node-dev  --respawn --transpile-only"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^24.2.1",
     "esbuild": "^0.25.9",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
   }
 }

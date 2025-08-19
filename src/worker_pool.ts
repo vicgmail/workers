@@ -11,7 +11,7 @@ interface WorkerTask {
   resolve: (value: any) => void;
 }
 
-class PooledWorker extends Worker {
+class WorkerPooled extends Worker {
   currentTask?: WorkerTask | null = null;
 
   constructor(path: string, options?: WorkerOptions) {
@@ -37,7 +37,7 @@ export class WorkerPool {
     const workerOptions = isTSNode ? { execArgv: ["-r", "ts-node/register"] } : {};
 
     for (let i = 0; i < this.size; i++) {
-      const worker = new PooledWorker(workerFile, workerOptions);
+      const worker = new WorkerPooled(workerFile, workerOptions);
 
       worker.on("message", (msg) => {
         if (worker["currentTask"]) {
@@ -59,10 +59,10 @@ export class WorkerPool {
     }
   }
 
-  run<T>(task: Task): Promise<any> {
+  run(task: Task): Promise<any> {
     return new Promise((resolve) => {
       if (this.freeWorkers.length > 0) {
-        const worker: PooledWorker = this.freeWorkers.pop()!;
+        const worker: WorkerPooled = this.freeWorkers.pop()!;
         worker.currentTask = { resolve };
         worker.postMessage(task);
       } else {

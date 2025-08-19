@@ -1,0 +1,21 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "scripts": {
+    "build": "tsc",
+    "build:run_worker": "node dist/worker/main.js",
+    "run_worker": "ts-node ./src/worker/main.ts",
+    "ts-node": "ts-node"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "esbuild": "^0.25.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

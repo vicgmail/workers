@@ -54,6 +54,10 @@ export class WorkerPool {
         }
       });
 
+      worker.on("error", (msg) => {
+        console.error("Worker error:", msg);
+      });
+
       this.workers.push(worker);
       this.freeWorkers.push(worker);
     }
